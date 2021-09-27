@@ -24,3 +24,10 @@ def test_pred_virginica():
         # asserting the correct response is received
         assert response.status_code == 200
         assert response.json() == {"flower_class": "Iris Virginica"}
+
+def test_feedback_loop():
+    p = [{"sepal_length":5, "sepal_width":5, "petal_length":5,"petal_width":5,"flower_class":"Iris Setosa"}]
+    with TestClient(app) as client:
+        res = client.post("/feedback_loop", json=p)
+        assert res.status_code == 200
+
